@@ -1,0 +1,15 @@
+################################## stop all
+for i in 1 2 3 4 ; do 
+       echo $i
+       gcloud compute instances stop  hpc-vm0$i  --project phpc01  --zone=europe-west1-b
+done
+################################## start all
+for i in 1 2 3 4 ; do 
+       echo $i
+       gcloud compute instances start hpc-vm0$i  --project phpc01  --zone=europe-west1-b
+done
+################################# IPs
+for i in 1 2 3 4 ; do 
+     echo $i
+     gcloud compute instances describe hpc-vm0$i  --project phpc01  --zone=europe-west1-b |egrep 'networkIP|natIP'
+done
